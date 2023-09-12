@@ -1,0 +1,37 @@
+// create the boilerplate for the devcontainer.json file 
+// include everything needed to install extensions used (copilot, copilot-chat, copilot-labs, etc.)
+// needs to have everything installed to run node js and python files
+{
+    "name": "Node.js & Python",
+    "image": "mcr.microsoft.com/vscode/devcontainers/javascript-node:0-18",
+
+    // Install Python 3.9 and pip
+    "runArgs": ["--mount", "type=bind,source=${localWorkspaceFolder},target=/workspace", "bash", "-c", "apt-get update && apt-get install -y python3.9 python3-pip"],
+
+    // Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {
+		"ghcr.io/devcontainers/features/azure-cli:1": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {}
+	},
+
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [3000, 4444],
+
+    // Install the necessary Node.js packages
+    "postCreateCommand": "npm install",
+
+    "customizations": {
+		"vscode": {
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash",
+                "python.pythonPath": "/usr/bin/python3.9"
+            },
+			"extensions": [
+				"GitHub.copilot",
+				"GitHub.copilot-labs",
+                "GitHub.copilot-chat"
+			]
+
+		}
+	}
+}
