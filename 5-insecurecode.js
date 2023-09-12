@@ -5,3 +5,10 @@ function queryDatabase(mainString) {
         pool.end()
     })
 }
+
+var name = document.getElementById('name').value;
+document.write('Hello, ' + name);
+
+var myAzureSecret = "pat_21BADKF201fsjksfHDAKJF2019"
+
+var randomNum = Math.floor(Math.random() * 100);
